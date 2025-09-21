@@ -7,8 +7,14 @@ let data: Array<{myValue: unknown; id: number}> = [
   {myValue: undefined, id: 2},
 ];
 
+let singleData: undefined|string = undefined;
+
 export const getData = query(() => {
   return data
+})
+
+export const getSingleData = query(() => {
+  return singleData
 })
 
 export const getDummy = query(() => {
@@ -20,4 +26,10 @@ export const setData = form(z.object({
   value: z.string()
 }), (parsed) => {
   data[parsed.index] = {myValue: parsed.value, id: parsed.index}
+})
+
+export const setSingleData = form(z.object({
+  value: z.string()
+}), (parsed) => {
+  singleData = parsed.value
 })
